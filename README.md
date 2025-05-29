@@ -30,7 +30,7 @@ We used ComfyUI version **0.3.26**, although the newer versions *should* work fi
 
 Large Language Models are used for generating content based on some input text string. For MikeBot, we wanted this to generate the required script, based on the type of video that the user requested. This script would contain a set of img prompts, audio prompts and video prompts, which we can then use to query the other models.
 
-Llama3 was the LLM of choice for generating the content for each video. This can run using the Ollama software, which can be downloaded from their website: https://ollama.com/library/llama3. We used the 8B parameter model, as we found that this was more than good enough for generating the script for each video. By following the installation instructions on the website, you should be able to get this running.  You can check that Ollama is running by typing in the following URL: http://127.0.0.1:11434/. 
+Llama3 was the LLM of choice for generating the content for each video. This can run using the Ollama software, which can be downloaded from their website: https://ollama.com/library/llama3. We used the 8B parameter model, as we found that this was more than good enough for generating the script for each video. By following the installation instructions on the website, you should be able to get this running.  You can check that Ollama is running by entering the following URL: http://127.0.0.1:11434/. 
 
 You can then connect to Ollama by executing the Llama3 workflow: ```llm/generate_script_using_llm.json```. 
 
@@ -58,7 +58,7 @@ Before you can construct a new LoRA, you will need to generate a dataset to trai
 
 Tip: I recommend using images that show the object/person in a variety of different poses and environments (which was tough for us since Mike films in his office most of the time)
 
-For each image, you will need to generate a caption that describes what is in the image. You can use **Florence 2**, or some other image captioning model, to generate these captions for you (if you do not want to caption it yourself). You can use Florance 2 executing the following workflow: ```img/florence2_img_captioning.json```. This model can be downloaded here: https://github.com/kijai/ComfyUI-Florence2
+For each image, you will need to generate a caption that describes what is in the image. You can use **Florence 2**, or some other image captioning model, to generate these captions for you (if you do not want to caption it yourself). You can use Florence 2 executing the following workflow: ```img/florence2_img_captioning.json```. This model can be downloaded here: https://github.com/kijai/ComfyUI-Florence2
 
 For your new object/person, you will need to assign a new *token* (character string) that the network can learn to associate with the new concept in the images. For MikeBot, we used the token ```MichaelPound```. What this means is that when we use the token *Michael Pound* in the image prompt, the Flux model (with the LoRA) knows that it needs to generate a new image of Mike. We chose to concatenate the two words together, since it makes it easier to train the LoRA since *MichaelPound* is a unique string. 
 
@@ -135,7 +135,7 @@ F5-TTS offer a Gradio app for achieving this, I recommend checking out their off
 
 Also, I found the video tutorial on this post to be **very helpful**: https://github.com/SWivid/F5-TTS/discussions/143
 
-Tip: Do not train for the entire number of epochs that it recommends- we found we got good results after around 1500 epochs (but this will vary depending on the amount of audio you want to train on)
+Tip: Do not train for the entire number of epochs that it recommends — we found we got good results after around 1500 epochs (but this will vary depending on the amount of audio you want to train on)
 
 To run F5-TTS audio, you can execute the workflow: ```video/f5-tts.json```. You will need to provide 10 seconds of audio and the associated text. To use your fine-tuned model, you will need to change *model* in the *F5TTSAudioInputs* node to your *.pt* file
 
@@ -167,7 +167,7 @@ Hedra Character-3 (Image/Text/Audio to full video): https://www.hedra.com/
 
 Udio (Text to Music): https://www.udio.com/
 
-# Disclamer
+# Disclaimer
 
 Hopefully I have credited all the technologies that were used for the creation of MikeBot, but if I haven't, then please let me know!
 
